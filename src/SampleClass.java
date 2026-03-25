@@ -1,91 +1,102 @@
 /**
- * Sample class.
- * @author Dr. Jody Paul
- * @version Demonstration
+ * Demonstrates simple utility methods.
+ *
+ * @author Suraj
+ * @version 1.0
  */
 public class SampleClass {
-    private boolean condition = false;
+
+    /** Maximum loop size. */
     private static final int SMALL_MAX = 10;
+
+    /** Constant value used in calculations. */
     private static final int ANSWER = 42;
 
-    /** Constructor. */
+    /** Toggle condition state. */
+    private boolean condition;
+
+    /**
+     * Default constructor.
+     */
     public SampleClass() {
         this.condition = false;
     }
 
     /**
-     * A basic "hello world" main method.
-     * @param args command-line parameters; ignored
+     * Entry point.
+     *
+     * @param args command-line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hello from SampleMain.main!");
+        System.out.println("Hello from SampleClass!");
     }
 
     /**
-     * Increment parameter value by 42.
-     * @param any any int value
-     * @return the value of the parameter plus 42
+     * Adds 42 to a number.
+     *
+     * @param value integer input
+     * @return value plus 42
      */
-    public int fortyTwo(int any) {
-        return any + ANSWER;
+    public int addFortyTwo(int value) {
+        return value + ANSWER;
     }
 
     /**
-     * Simple binary toggle.
-     * @return current condition after toggling
+     * Toggles the boolean condition.
+     *
+     * @return updated condition
      */
     public boolean toggle() {
-        return (condition = !condition);
+        condition = !condition;
+        return condition;
     }
 
     /**
-     * Repeated concatenation.
-     * @return result of building a string in a loop
+     * Builds a formatted number string.
+     *
+     * @return formatted string
      */
-    public String concatInLoop() {
-        String builder = "[";
+    public String buildNumberString() {
+        StringBuilder builder = new StringBuilder("[");
         for (int i = 0; i < SMALL_MAX; i++) {
-            builder += " " + i;
+            builder.append(" ").append(i);
         }
-        builder += " ]";
-        return builder;
+        builder.append(" ]");
+        return builder.toString();
     }
 
     /**
-     * Strange code method.
-     * @return sum of numbers up to parameter
+     * Returns the sum of numbers from 1 to parameter.
+     *
+     * @param parameter upper bound
+     * @return computed sum
      */
-    public int strangeMethod(int parameter) {
-        int j = 0;
-        for (int i = 1; i < ANSWER; i++) {
-            j = i + 1;
+    public int sumUpTo(int parameter) {
+        int sum = 0;
+        for (int i = 1; i <= parameter; i++) {
+            sum += i;
         }
-        return j;
+        return sum;
     }
 
     /**
-     * Example of deeply embedded loops.
+     * Counts even numbers in nested loops.
+     *
+     * @return computed count
      */
-    public void embeddedLoops() {
-        int howmany = 0;
+    public int countEvenIterations() {
+        int count = 0;
         for (int x = 0; x < SMALL_MAX; x++) {
             for (int i = 0; i < SMALL_MAX; i++) {
                 for (int j = i; j < SMALL_MAX; j++) {
                     for (int k = 0; k < 8; k++) {
-                        if (0 == k % 2) {
-                            howmany++;
-                        } else {
-                            if (0 == j % 2) {
-                                if (1 == i % 2) {
-                                    if (0 == x % 2) {
-                                        howmany--;
-                                    }
-                                }
-                            }
+                        if (k % 2 == 0) {
+                            count++;
                         }
                     }
                 }
             }
         }
+        return count;
     }
 }
